@@ -54,10 +54,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         view.setLayoutManager(new LinearLayoutManager(this));
         view.setAdapter(adapter);
 
-
-
         new JsonTask(this).execute(JSON_URL);
-        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -65,8 +62,13 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         Log.d("MainActivity", json);
         Type type = new TypeToken<List<Plants>>() {}.getType();
         List<Plants> listOfPlants = gson.fromJson(json, type);
+
+        for (Plants plant : listOfPlants) {
+            String imageName = plant.getPlantPhoto();
+        }
+
         items.addAll(listOfPlants);
-        adapter.notifyDataSetChanged(); // Notify the adapter that the data set has changed
+        adapter.notifyDataSetChanged();
     }
 
 }
