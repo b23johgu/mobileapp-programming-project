@@ -1,11 +1,15 @@
 package com.example.project;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.ImageView;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -31,10 +35,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.name.setText(items.get(position).getName());
-        holder.location.setText(items.get(position).getLocation());
-        /*holder.size.setText(items.get(position).getSize()+" m");*/
+        Plants plant = items.get(position);
+        holder.name.setText(plant.getName());
+        holder.company.setText(plant.getCompany());
+        holder.location.setText("Ursprung: " + plant.getLocation());
+        // Set centimeter
+        holder.centimeter.setText(String.valueOf("Cirka " + plant.getCentimeter()) + " cm hög");
+
+       /* // Load plant photo from assets folder
+        try {
+            InputStream inputStream = layoutInflater.getContext().getAssets().open(plant.getPlantPhoto() + ".png");
+            Drawable drawable = Drawable.createFromStream(inputStream, null);
+            holder.plantPhoto.setImageDrawable(drawable);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
     }
+
 
     @Override
     public int getItemCount() {
@@ -46,6 +63,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView company;
         TextView location;
         TextView centimeter;
+        /*ImageView plantPhoto;*/
+
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -54,6 +73,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             company = itemView.findViewById(R.id.plant_latin);
             location = itemView.findViewById(R.id.plant_location);
             centimeter = itemView.findViewById(R.id.plant_category);
+            /*plantPhoto = itemView.findViewById(R.id.plant_image);*/
+
 
         }
 
