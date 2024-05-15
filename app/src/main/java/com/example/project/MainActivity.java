@@ -22,10 +22,11 @@ import java.util.Scanner;
 public class MainActivity extends AppCompatActivity implements JsonTask.JsonTaskListener {
 
     private final String JSON_URL = "https://mobprog.webug.se/json-api?login=b23johgu";
-    private final String JSON_FILE = "mountains.json";
+
     private Plants[] plants;
     Gson gson = new Gson();
     ArrayList<Plants> items = new ArrayList<>();
+    RecyclerViewAdapter adapter;
 
     @SuppressWarnings("SameParameterValue")
     private String readFile(String plants) {
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, items, new RecyclerViewAdapter.OnClickListener() {
+        adapter = new RecyclerViewAdapter(this, items, new RecyclerViewAdapter.OnClickListener() {
             @Override
             public void onClick(Plants item) {
                 Toast.makeText(MainActivity.this, item.toString(), Toast.LENGTH_SHORT).show();
@@ -53,20 +54,19 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         view.setLayoutManager(new LinearLayoutManager(this));
         view.setAdapter(adapter);
 
-        String s = readFile("plants.json");
-        Log.d("MainActivity","The following text was found in textfile:\n\n"+s);
 
 
-        plants = gson.fromJson(s, Plants[].class);
-
-        for (int i = 0; i < plants.length; i++) {
-            Log.d("mainActivity ==>","Hittade en växt " +plants[i].getName() + " " + plants[i].getID() + " " + plants[i].getCompany());
-        }
-
-
-        new JsonFile(this, this).execute(JSON_FILE);
-        /*new JsonTask(this).execute(JSON_URL);*/
+        new JsonTask(this).execute(JSON_URL);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onPostExecute(String json) {
+        Log.d("MainActivity", json);
+        Type type = new TypeToken<List<Plants>>() {}.getType();
+        List<Plants> listOfPlants = gson.fromJson(json, type);
+        items.addAll(listOfPlants);
+        adapter.notifyDataSetChanged(); // Notify the adapter that the data set has changed
     }
 
 }
