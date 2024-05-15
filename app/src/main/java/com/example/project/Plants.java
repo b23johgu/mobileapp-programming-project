@@ -10,7 +10,8 @@ public class Plants {
     private String location;
     @SerializedName("size")
     private int centimeter;
-    private int plantPhoto;
+    /*@SerializedName("auxdata")
+    private int plantPhoto;*/
 
     public Plants(String ID, String name, String company, String category, String location, int centimeter, int plantPhoto) {
         this.ID = ID;
@@ -19,7 +20,7 @@ public class Plants {
         this.category = category;
         this.location = location;
         this.centimeter = centimeter;
-        this.plantPhoto = plantPhoto;
+        /*this.plantPhoto = plantPhoto;*/
     }
 
     public String getID() {
@@ -46,8 +47,8 @@ public class Plants {
         return centimeter;
 
     }
-    public int getPlantPhoto() {
+    /*public int getPlantPhoto() {
         return plantPhoto;
-    }
+    }*/
 
 }
