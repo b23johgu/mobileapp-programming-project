@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">GardenGlow</string>
     <string name="about_us">About us</string>
+
+    <string name="about_text1">
+        Discover the joy of plant care with GardenGlow! 🌱✨ Whether you\'re an experienced gardener or a new plant parent, our app helps your plants flourish. 🌿📱
+    </string>
+    <string name="about_text2">
+        Get personalized care tips, watering reminders, and expert advice to keep your green friends thriving. 🌸📅 Identify plants and learn about their needs with ease. 🌼🔍
+    </string>
+    <string name="about_text3">
+        Join a community of plant enthusiasts and share your plant journey. 🌍💚 Embrace the beauty of nature with GardenGlow! 🌟🌱✨
+    </string>
 </resources>
