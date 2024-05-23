@@ -81,8 +81,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             category = itemView.findViewById(R.id.plant_category);
             centimeter = itemView.findViewById(R.id.plant_size);
             plantPhoto = itemView.findViewById(R.id.plant_image);
-
-
         }
 
         @Override
