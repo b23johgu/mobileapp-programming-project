@@ -104,6 +104,8 @@ To navigate to the different activities an Intent is added to both activities. T
 ```
 
 ![Screenshot of the menu](screenshots/menuitems.png)
+![Another screenshot of the menu](screenshots/toolbarmenu2.png)
+
 
 The second activity has a text that describes what the app is used for to reach the target group and a rating bar to rate the app.
 ![Screenshot of the about us page (AboutActivity)](screenshots/aboutus.png)
