@@ -1,14 +1,16 @@
 <resources>
-    <string name="app_name">GardenGlow</string>
-    <string name="about_us">About us</string>
+    <string name="app_name">VerdantVibes</string>
+    <string name="om_gardenglow">Om VerdantVibes</string>
+    <string name="hem">Hem</string>
+    <string name="betygs_tt_verdantvibes">Betygsätt VerdantVibes:</string>
 
     <string name="about_text1">
-        Discover the joy of plant care with GardenGlow! 🌱✨ Whether you\'re an experienced gardener or a new plant parent, our app helps your plants flourish. 🌿📱
+        Upptäck glädjen med att sköta växter med VerdantVibes! 🌱 Oavsett om du redan har de grönaste av fingrar eller om du är en ny växtförälder, hjälper vår app dina växter att blomstra.
     </string>
     <string name="about_text2">
-        Get personalized care tips, watering reminders, and expert advice to keep your green friends thriving. 🌸📅 Identify plants and learn about their needs with ease. 🌼🔍
+        Få personliga skötseltips för dina växter, påminnelser om bevattning och expertråd för att hålla dina växter gröna och glada. Identifiera okända växter och lär dig om deras behov.
     </string>
     <string name="about_text3">
-        Join a community of plant enthusiasts and share your plant journey. 🌍💚 Embrace the beauty of nature with GardenGlow! 🌟🌱✨
+        Välkommen till VerdantVibes, ett community för och av växtentusiaster. Omfamna naturens skönhet tillsammans med oss! 🌿
     </string>
 </resources>
