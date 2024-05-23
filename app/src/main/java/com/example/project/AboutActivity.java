@@ -35,7 +35,7 @@ public class AboutActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.about_us:
-                Toast.makeText(this, "You clicked 'about us'", Toast.LENGTH_SHORT).show();
+
                 break;
             default:
                 break;
