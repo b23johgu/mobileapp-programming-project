@@ -2,12 +2,11 @@ package com.example.project;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,14 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.IOException;
 import java.lang.reflect.Type;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-@SuppressWarnings("FieldCanBeLocal")
 public class MainActivity extends AppCompatActivity implements JsonTask.JsonTaskListener {
 
     private final String JSON_URL = "https://mobprog.webug.se/json-api?login=b23johgu";
@@ -33,33 +28,14 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     ArrayList<Plants> items = new ArrayList<>();
     RecyclerViewAdapter adapter;
 
-    @SuppressWarnings("SameParameterValue")
-    private String readFile(String plants) {
-        try {
-            //noinspection CharsetObjectCanBeUsed
-            return new Scanner(getApplicationContext().getAssets().open(plants), Charset.forName("UTF-8").name()).useDelimiter("\\A").next();
-        } catch (IOException e) {
-
-            return null;
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
-        Button b = findViewById(R.id.button);
         setSupportActionBar(toolbar);
 
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(MainActivity.this, About.class);
-                startActivity(intent);
-            }
-        });
         adapter = new RecyclerViewAdapter(this, items, new RecyclerViewAdapter.OnClickListener() {
             @Override
             public void onClick(Plants item) {
@@ -75,17 +51,33 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home:
+                Toast.makeText(this, "you clicked 'home'", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.about_us:
+                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
+
+    @Override
     public void onPostExecute(String json) {
-        Log.d("MainActivity", json);
         Type type = new TypeToken<List<Plants>>() {}.getType();
         List<Plants> listOfPlants = gson.fromJson(json, type);
-
-        for (Plants plant : listOfPlants) {
-            String imageName = plant.getPlantPhoto();
-        }
 
         items.addAll(listOfPlants);
         adapter.notifyDataSetChanged();
     }
-
 }
